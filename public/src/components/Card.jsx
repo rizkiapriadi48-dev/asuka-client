@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 
 export default function Card({ product }) {
+    console.log(product);
     return (
         <>
             <div key={product.id}>

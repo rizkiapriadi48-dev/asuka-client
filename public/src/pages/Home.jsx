@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Card from "../components/Card";
 import axios from "axios";
-import Navbar from "../components/Navbar";
+import Toastify from 'toastify-js'
 
 export default function Home() {
   const [products, setProducts] = useState([]);
@@ -10,9 +10,10 @@ export default function Home() {
 
   const [sort, setSort] = useState("DESC");
   const [search, setSearch] = useState("");
-  const [page, setPage] = useState("1");
   const [filter, setFilter] = useState("");
-  const [totalPage, setTotalPage] = useState("1");
+  const [page, setPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(0);
+  const pages = generatePages();
 
   async function fetchCategories() {
     try {
@@ -36,13 +37,29 @@ export default function Home() {
         },
       );
       setProducts(data.data);
-      setTotalPage(data.totalPage || 1);
+      setTotalPage(data.totalPage);
     } catch (error) {
-      console.log(error);
+      Toastify({
+        text: error.response.data.message,
+        duration: 3000,
+        newWindow: true,
+        close: true,
+        gravity: "bottom", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "#F87171",
+          color: "black",
+          border: "solid #000000",
+          borderRadius: "8px",
+          boxShadow: "2px 2px black",
+        },
+      }).showToast();
     } finally {
       setLoading(false);
     }
   }
+
   useEffect(() => {
     fetchCategories();
   }, []);
@@ -59,7 +76,31 @@ export default function Home() {
   function handleSearch(e) {
     setPage(1);
     setSearch(e.target.value);
+    e.preventDefault();
+    
   }
+
+  function generatePages() {
+    const array = [];
+    for (let i = 1; i <= totalPage; i++) {
+      array.push(i);
+    }
+    return array;
+  }
+  function handlePages(page){
+    setPage(page)
+  }
+   function handlePrevious() {
+        if (page > 1) {
+            setPage(page - 1)
+        }
+    }
+
+    function handleNext() {
+        if (page < totalPage) {
+            setPage(page + 1)
+        }
+    }
 
   function handleFilter(value) {
     setPage(1);
@@ -67,7 +108,6 @@ export default function Home() {
   }
 
   return (
-    
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-4">Daftar Produk</h1>
 
@@ -92,7 +132,7 @@ export default function Home() {
               </g>
             </svg>
             <input
-              className="peer h-full w-full outline-none text-sm text-gray-800 pr-2"
+              className="peer h-full w-full outline-none text-sm text-amber-50 pr-2"
               type="text"
               id="search"
               placeholder="Product"
@@ -143,15 +183,65 @@ export default function Home() {
       )}
 
       {/* pagination */}
-      <div className="join">
-        <button
-          className="join-item btn"
-          disabled={page === 1}
-          onClick={() => setPage(page - 1)}
-        >
-          1
-        </button>
-      </div>
+     <nav className="flex items-center justify-center gap-x-1">
+                <button
+                    type="button"
+                    className="min-h-[38px] min-w-[38px] flex justify-center items-center rounded-lg border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-purple-400 hover:border-2 hover:border-black hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] py-2 px-3 text-sm disabled:bg-purple-400"
+                    onClick={handlePrevious}
+                    disabled={page <= 1 ? true : false}
+                >
+                    <svg
+                        className="shrink-0 size-3.5"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="{2}"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                    >
+                        <path d="m15 18-6-6 6-6" />
+                    </svg>
+                    <span>Prev</span>
+                </button>
+
+                <div className="flex items-center gap-x-1">
+                    {pages.map((pages) => {
+                        return (
+                            <div key={pages}>
+                                <button
+                                    type="button"
+                                    className={pages === page ? "min-h-[38px] min-w-[38px] flex justify-center items-center bg-purple-400 py-2 px-3 text-sm border-2 border-black rounded-lg shadow-[2px_2px_0px_rgba(0,0,0,1)]" : "min-h-[38px] min-w-[38px] flex justify-center items-center rounded-lg border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-purple-400 hover:border-2 hover:border-black hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] py-2 px-3 text-sm"}
+                                    onClick={() => handlePages(pages)}
+                                >
+                                    {pages}
+                                </button>
+                            </div>
+                        )
+                    })}
+                </div>
+
+                <button
+                    type="button"
+                    className="min-h-[38px] min-w-[38px] flex justify-center items-center rounded-lg border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-purple-400 hover:border-2 hover:border-black hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] py-2 px-3 text-sm disabled:bg-purple-400"
+                    onClick={handleNext}
+                    disabled={page >= totalPage ? true : false}
+                >
+                    <span>Next</span>
+                    <svg
+                        className="shrink-0 size-3.5"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="{2}"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                    >
+                        <path d="m9 18 6-6-6-6" />
+                    </svg>
+                </button>
+            </nav>
     </div>
   );
 }
