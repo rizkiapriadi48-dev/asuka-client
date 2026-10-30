@@ -109,7 +109,7 @@ export default function Home() {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Daftar Produk</h1>
+      <h1 className="text-2xl font-bold mb-4">Product List</h1>
 
       <div className="flex flex-wrap items-center gap-4 mb-6">
         {/* search */}
@@ -147,7 +147,7 @@ export default function Home() {
             className={`btn ${filter === "" ? "btn-primary" : ""}`}
             onClick={() => handleFilter("")}
           >
-            Semua
+            All
           </button>
           {categories.map((c) => (
             <button
@@ -162,8 +162,8 @@ export default function Home() {
 
         {/* sort */}
         <select className="select w-40" value={sort} onChange={handleSort}>
-          <option value="DESC">Terbaru</option>
-          <option value="ASC">Terlama</option>
+          <option value="DESC">Latest</option>
+          <option value="ASC">Oldest</option>
         </select>
       </div>
 

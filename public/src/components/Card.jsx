@@ -1,12 +1,12 @@
 import { Link } from "react-router";
 
 export default function Card({ product }) {
-    console.log(product);
+    // console.log(product);
     return (
         <>
             <div key={product.id}>
                 {/* card */}
-                <div className="flex flex-col flex-start items-center bg-yellow-400 border-2 border-black p-5 rounded-2xl shadow-[2px_2px_0px_rgba(0,0,0,1)] h-full">
+                <div className="flex flex-col flex-start items-center bg-cyan-600 border-2 border-black p-5 rounded-2xl shadow-[2px_2px_0px_rgba(0,0,0,1)] h-full">
                     <div>
                         <Link to={`/detail/${product.id}`}>
                             <img
