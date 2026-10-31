@@ -16,7 +16,7 @@ export default function Login() {
         `https://asoka-server.yayeh.web.id/login`,
         { email, password },
       );
-      localStorage.setItem("access_token", data.acces_token);
+      localStorage.setItem("access_token", data.access_token);
       Toastify({
         text: "Succeed Login",
         duration: 3000,
@@ -64,7 +64,7 @@ export default function Login() {
                             <input
                                 type="email"
                                 id="email"
-                                className="bg-white rounded-lg w-full px-3 py-2 border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)]"
+                                className="bg-white rounded-lg w-full px-3 py-2 border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] text-black"
                                 placeholder="your@email.com"
                                 autoComplete="current-email"
                                 onChange={(e) => setEmail(e.target.value)}
@@ -75,7 +75,7 @@ export default function Login() {
                             <input
                                 type="password"
                                 id="password"
-                                className="bg-white ounded-lg w-full px-3 py-2 border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)]"
+                                className="bg-white ounded-lg w-full px-3 py-2 border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] text-black"
                                 placeholder="Enter your password"
                                 autoComplete="current-password"
                                 onChange={(e) => setPassword(e.target.value)}
