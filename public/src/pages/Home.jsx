@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Card from "../components/Card";
 import axios from "axios";
-import Toastify from 'toastify-js'
+import Toastify from "toastify-js";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
@@ -77,7 +77,6 @@ export default function Home() {
     setPage(1);
     setSearch(e.target.value);
     e.preventDefault();
-    
   }
 
   function generatePages() {
@@ -87,20 +86,20 @@ export default function Home() {
     }
     return array;
   }
-  function handlePages(page){
-    setPage(page)
+  function handlePages(page) {
+    setPage(page);
   }
-   function handlePrevious() {
-        if (page > 1) {
-            setPage(page - 1)
-        }
+  function handlePrevious() {
+    if (page > 1) {
+      setPage(page - 1);
     }
+  }
 
-    function handleNext() {
-        if (page < totalPage) {
-            setPage(page + 1)
-        }
+  function handleNext() {
+    if (page < totalPage) {
+      setPage(page + 1);
     }
+  }
 
   function handleFilter(value) {
     setPage(1);
@@ -183,65 +182,69 @@ export default function Home() {
       )}
 
       {/* pagination */}
-     <nav className="flex items-center justify-center gap-x-1">
-                <button
-                    type="button"
-                    className="min-h-[38px] min-w-[38px] flex justify-center items-center rounded-lg border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-purple-400 hover:border-2 hover:border-black hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] py-2 px-3 text-sm disabled:bg-purple-400"
-                    onClick={handlePrevious}
-                    disabled={page <= 1 ? true : false}
-                >
-                    <svg
-                        className="shrink-0 size-3.5"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="{2}"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                    >
-                        <path d="m15 18-6-6 6-6" />
-                    </svg>
-                    <span>Prev</span>
-                </button>
+      <nav className="flex items-center justify-center gap-x-1">
+        <button
+          type="button"
+          className="min-h-[38px] min-w-[38px] flex justify-center items-center rounded-lg border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-purple-400 hover:border-2 hover:border-black hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] py-2 px-3 text-sm disabled:bg-purple-400"
+          onClick={handlePrevious}
+          disabled={page <= 1 ? true : false}
+        >
+          <svg
+            className="shrink-0 size-3.5"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="{2}"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="m15 18-6-6 6-6" />
+          </svg>
+          <span>Prev</span>
+        </button>
 
-                <div className="flex items-center gap-x-1">
-                    {pages.map((pages) => {
-                        return (
-                            <div key={pages}>
-                                <button
-                                    type="button"
-                                    className={pages === page ? "min-h-[38px] min-w-[38px] flex justify-center items-center bg-purple-400 py-2 px-3 text-sm border-2 border-black rounded-lg shadow-[2px_2px_0px_rgba(0,0,0,1)]" : "min-h-[38px] min-w-[38px] flex justify-center items-center rounded-lg border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-purple-400 hover:border-2 hover:border-black hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] py-2 px-3 text-sm"}
-                                    onClick={() => handlePages(pages)}
-                                >
-                                    {pages}
-                                </button>
-                            </div>
-                        )
-                    })}
-                </div>
-
+        <div className="flex items-center gap-x-1">
+          {pages.map((pages) => {
+            return (
+              <div key={pages}>
                 <button
-                    type="button"
-                    className="min-h-[38px] min-w-[38px] flex justify-center items-center rounded-lg border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-purple-400 hover:border-2 hover:border-black hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] py-2 px-3 text-sm disabled:bg-purple-400"
-                    onClick={handleNext}
-                    disabled={page >= totalPage ? true : false}
+                  type="button"
+                  className={
+                    pages === page
+                      ? "min-h-[38px] min-w-[38px] flex justify-center items-center bg-purple-400 py-2 px-3 text-sm border-2 border-black rounded-lg shadow-[2px_2px_0px_rgba(0,0,0,1)]"
+                      : "min-h-[38px] min-w-[38px] flex justify-center items-center rounded-lg border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-purple-400 hover:border-2 hover:border-black hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] py-2 px-3 text-sm"
+                  }
+                  onClick={() => handlePages(pages)}
                 >
-                    <span>Next</span>
-                    <svg
-                        className="shrink-0 size-3.5"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="{2}"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                    >
-                        <path d="m9 18 6-6-6-6" />
-                    </svg>
+                  {pages}
                 </button>
-            </nav>
+              </div>
+            );
+          })}
+        </div>
+
+        <button
+          type="button"
+          className="min-h-[38px] min-w-[38px] flex justify-center items-center rounded-lg border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-purple-400 hover:border-2 hover:border-black hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] py-2 px-3 text-sm disabled:bg-purple-400"
+          onClick={handleNext}
+          disabled={page >= totalPage ? true : false}
+        >
+          <span>Next</span>
+          <svg
+            className="shrink-0 size-3.5"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="{2}"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="m9 18 6-6-6-6" />
+          </svg>
+        </button>
+      </nav>
     </div>
   );
 }

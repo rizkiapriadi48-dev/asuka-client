@@ -5,7 +5,7 @@ export default function Navbar() {
 
   async function handleLogout() {
     localStorage.clear();
-    navigate("/login");
+    navigate("/");
   }
 
   return (
