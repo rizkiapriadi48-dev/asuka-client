@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
-import Toastify from "toastify-js";
 import Button from "../components/Button";
+import Toastify from "toastify-js";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
@@ -21,28 +21,29 @@ export default function Home() {
           },
         },
       );
-      setProducts(data.data);
+      setProducts(data.data)
     } catch (error) {
-      Toastify({
-        text: error.response.data.message,
-        duration: 3000,
-        newWindow: true,
-        close: true,
-        gravity: "bottom", // `top` or `bottom`
-        position: "right", // `left`, `center` or `right`
-        stopOnFocus: true, // Prevents dismissing of toast on hover
-        style: {
-          background: "#F87171",
-          color: "black",
-          border: "solid #000000",
-          borderRadius: "8px",
-          boxShadow: "2px 2px black",
-        },
-      }).showToast();
+       Toastify({
+              text: error.response.data.message,
+              duration: 3000,
+              newWindow: true,
+              close: true,
+              gravity: "bottom", // `top` or `bottom`
+              position: "right", // `left`, `center` or `right`
+              stopOnFocus: true, // Prevents dismissing of toast on hover
+              style: {
+                background: "#F87171",
+                color: "black",
+                border: "solid #000000",
+                borderRadius: "8px",
+                boxShadow: "2px 2px black",
+              },
+            }).showToast();
     } finally {
       setLoading(false);
     }
   }
+
   async function fetchCategories() {
     try {
       const { data } = await axios.get(
@@ -56,25 +57,28 @@ export default function Home() {
 
       setCategories(data.data);
     } catch (error) {
-      Toastify({
-        text: error.response.data.message,
-        duration: 3000,
-        newWindow: true,
-        close: true,
-        gravity: "bottom", // `top` or `bottom`
-        position: "right", // `left`, `center` or `right`
-        stopOnFocus: true, // Prevents dismissing of toast on hover
-        style: {
-          background: "#F87171",
-          color: "black",
-          border: "solid #000000",
-          borderRadius: "8px",
-          boxShadow: "2px 2px black",
-        },
-      }).showToast();
+       Toastify({
+              text: error.response.data.message,
+              duration: 3000,
+              newWindow: true,
+              close: true,
+              gravity: "bottom", // `top` or `bottom`
+              position: "right", // `left`, `center` or `right`
+              stopOnFocus: true, // Prevents dismissing of toast on hover
+              style: {
+                background: "#F87171",
+                color: "black",
+                border: "solid #000000",
+                borderRadius: "8px",
+                boxShadow: "2px 2px black",
+              },
+            }).showToast();
     }
   }
+
   async function handleDelete(id, name) {
+    
+
     try {
       const { data } = await axios.delete(
         `https://asoka-server.yayeh.web.id/products/${id}`,
@@ -84,51 +88,55 @@ export default function Home() {
           },
         },
       );
-      Toastify({
-        text: "Success deleted",
-        duration: 3000,
-        newWindow: true,
-        close: true,
-        gravity: "bottom", // `top` or `bottom`
-        position: "right", // `left`, `center` or `right`
-        stopOnFocus: true, // Prevents dismissing of toast on hover
-        style: {
-          background: "#34D399",
-          color: "black",
-          border: "solid #000000",
-          borderRadius: "8px",
-          boxShadow: "2px 2px black",
-        },
-      }).showToast();
+       Toastify({
+              text:"Success deleted",
+              duration: 3000,
+              newWindow: true,
+              close: true,
+              gravity: "bottom", // `top` or `bottom`
+              position: "right", // `left`, `center` or `right`
+              stopOnFocus: true, // Prevents dismissing of toast on hover
+              style: {
+                background: "#34D399",
+                color: "black",
+                border: "solid #000000",
+                borderRadius: "8px",
+                boxShadow: "2px 2px black",
+              },
+            }).showToast();
       fetchProduct();
     } catch (error) {
       Toastify({
-        text: error.response.data.message,
-        duration: 3000,
-        newWindow: true,
-        close: true,
-        gravity: "bottom", // `top` or `bottom`
-        position: "right", // `left`, `center` or `right`
-        stopOnFocus: true, // Prevents dismissing of toast on hover
-        style: {
-          background: "#F87171",
-          color: "black",
-          border: "solid #000000",
-          borderRadius: "8px",
-          boxShadow: "2px 2px black",
-        },
-      }).showToast();
+              text: "failed deleted",
+              duration: 3000,
+              newWindow: true,
+              close: true,
+              gravity: "bottom", // `top` or `bottom`
+              position: "right", // `left`, `center` or `right`
+              stopOnFocus: true, // Prevents dismissing of toast on hover
+              style: {
+                background: "#F87171",
+                color: "black",
+                border: "solid #000000",
+                borderRadius: "8px",
+                boxShadow: "2px 2px black",
+              },
+            }).showToast();
     }
   }
+
   function categoryName(categoryId) {
     const found = categories.find((c) => c.id === categoryId);
     return found ? found.name : categoryId;
   }
+
   useEffect(() => {
-    (fetchCategories(), fetchProduct());
+    fetchCategories();
+    fetchProduct();
   }, []);
+
   const linkBtn =
-    "py-2 px-4 border-2 border-black rounded-2xl text-sm font-medium shadow-[2px_2px_0px_rgba(0,0,0,1)] text-amber-50";
+    "py-2 px-4 border-2 border-black rounded-lg text-sm font-medium text-black shadow-[2px_2px_0px_rgba(0,0,0,1)]";
 
   return (
     <>
@@ -137,7 +145,7 @@ export default function Home() {
       {loading ? (
         <p className="text-center mt-20 text-xl font-bold">Loading...</p>
       ) : (
-        <div className="overflow-x-auto border-2 border-black rounded-2xl shadow-[2px_2px_0px_rgba(0,0,0,1)] bg-white">
+        <div className="overflow-x-auto border-2 border-black rounded-2xl shadow-[2px_2px_0px_rgba(0,0,0,1)] bg-white text-black">
           <table className="w-full text-left">
             <thead className="bg-yellow-400 border-b-2 border-black">
               <tr>
@@ -174,7 +182,9 @@ export default function Home() {
                     Rp {Number(product.price).toLocaleString("id-ID")}
                   </td>
                   <td className="p-3 text-black">{product.stock}</td>
-                  <td className="p-3 text-black">{categoryName(product.categoryId)}</td>
+                  <td className="p-3 text-black">
+                    {categoryName(product.categoryId)}
+                  </td>
                   <td className="p-3">
                     <div className="flex flex-wrap gap-2">
                       <Link
@@ -190,7 +200,7 @@ export default function Home() {
                         Upload
                       </Link>
                       <Button
-                        nameProp={"Delete"}
+                        variant="danger"
                         onClick={() => handleDelete(product.id, product.name)}
                       >
                         Delete

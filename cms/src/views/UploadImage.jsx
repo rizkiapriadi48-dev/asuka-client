@@ -129,11 +129,11 @@ export default function UploadImage() {
         <input
           type="file"
           accept="image/*"
-          className="bg-white w-full px-3 py-2 border-2 border-black rounded-2xl shadow-[2px_2px_0px_rgba(0,0,0,1)]"
+          className="bg-white w-full px-3 py-2 border-2 border-black rounded-2xl shadow-[2px_2px_0px_rgba(0,0,0,1)] text-black"
           onChange={(e) => setFile(e.target.files[0])}
         />
 
-        <Button nameProp={"Upload"}>
+        <Button type="submit" nameProp={"Upload"} className="w-full">
           Upload
         </Button>
       </form>

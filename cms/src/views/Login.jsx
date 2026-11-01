@@ -1,7 +1,7 @@
 import Toastify from "toastify-js";
 import Button from "../components/Button";
 import axios from "axios";
-import { useNavigate } from "react-router";
+import { Navigate, useNavigate } from "react-router";
 import { useState } from "react";
 
 export default function Login() {
@@ -36,7 +36,7 @@ export default function Login() {
       navigate("/");
     } catch (error) {
       Toastify({
-        text: error.response.data.message,
+        text: "You already logged in",
         duration: 3000,
         newWindow: true,
         close: true,
@@ -53,39 +53,60 @@ export default function Login() {
       }).showToast();
     }
   }
-  return(
+  const token = localStorage.getItem("access_token");
+  if (token && token !== "undefined") {
+    Toastify({
+        text: "You already logged in",
+        duration: 3000,
+        newWindow: true,
+        close: true,
+        gravity: "bottom", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "#F87171",
+          color: "black",
+          border: "solid #000000",
+          borderRadius: "8px",
+          boxShadow: "2px 2px black",
+        },
+      }).showToast();
+    return <Navigate to="/" />;
+  }
+  return (
     <>
-            <div className="min-h-screen flex items-center justify-center w-full">
-                <div className="px-8 py-6 w-1/3 bg-blue-400 border-2 border-black rounded-lg shadow-[2px_2px_0px_rgba(0,0,0,1)]">
-                    <h1 className="text-2xl font-bold text-center mb-4">Login</h1>
-                    <form onSubmit={handleLogin}>
-                        <div className="mb-4">
-                            <label className="block text-sm font-medium ">Email Address </label>
-                            <input
-                                type="email"
-                                id="email"
-                                className="bg-white rounded-lg w-full px-3 py-2 border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] text-black"
-                                placeholder="your@email.com"
-                                autoComplete="current-email"
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                        </div>
-                        <div className="mb-4">
-                            <label className="block text-sm font-medium">Password</label>
-                            <input
-                                type="password"
-                                id="password"
-                                className="bg-white ounded-lg w-full px-3 py-2 border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] text-black"
-                                placeholder="Enter your password"
-                                autoComplete="current-password"
-                                onChange={(e) => setPassword(e.target.value)}
-
-                            />
-                        </div>
-                        <Button nameProp={"Login"} />
-                    </form>
-                </div>
+      <div className="min-h-screen flex items-center justify-center w-full">
+        <div className="px-8 py-6 w-1/3 bg-blue-400 border-2 border-black rounded-lg shadow-[2px_2px_0px_rgba(0,0,0,1)]">
+          <h1 className="text-2xl font-bold text-center mb-4">Login</h1>
+          <form onSubmit={handleLogin}>
+            <div className="mb-4">
+              <label className="block text-sm font-medium ">
+                Email Address{" "}
+              </label>
+              <input
+                type="email"
+                id="email"
+                className="bg-white rounded-lg w-full px-3 py-2 border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] text-black"
+                placeholder="your@email.com"
+                autoComplete="current-email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
-        </>
-  )
+            <div className="mb-4">
+              <label className="block text-sm font-medium">Password</label>
+              <input
+                type="password"
+                id="password"
+                className="bg-white ounded-lg w-full px-3 py-2 border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] text-black"
+                placeholder="Enter your password"
+                autoComplete="current-password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <Button type="submit" nameProp={"Login"} className="w-full mt-5" />
+          </form>
+        </div>
+      </div>
+    </>
+  );
 }

@@ -9,8 +9,9 @@ export default function AddProduct() {
   async function handleSubmit(e, form) {
     e.preventDefault();
     try {
-      const { data } = await axios.get(
+      const { data } = await axios.post(
         `https://asoka-server.yayeh.web.id/products`,
+        form,
         {
           headers: {
             Authorization: `Bearer ${localStorage.access_token}`,

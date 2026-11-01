@@ -48,7 +48,7 @@ export default function Navbar() {
               : "text-2xl font-bold px-6 cursor-pointer"
           }
         >
-          <span>add-staff</span>
+          <span>Add Staff</span>
         </NavLink>
         <a
           onClick={handleLogout}
