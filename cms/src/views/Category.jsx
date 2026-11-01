@@ -62,8 +62,8 @@ export default function Category() {
             <tbody>
               {categories.map((c) => (
                 <tr key={c.id} className="border-b border-black">
-                  <td className="p-3">{c.id}</td>
-                  <td className="p-3 font-bold">{c.name}</td>
+                  <td className="p-3 text-black">{c.id}</td>
+                  <td className="p-3 font-bold text-black">{c.name}</td>
                 </tr>
               ))}
             </tbody>

@@ -86,13 +86,13 @@ export default function ProductForm({ nameProp, handleSubmit, product }) {
                 <h1 className="text-2xl font-bold text-center mb-4">{nameProp}</h1>
                 <div className="grid grid-cols-2 gap-4">
                     <div>
-                        <label className="label">
+                        <label className="label ">
                             <span className="font-bold">Name</span>
                         </label>
                         <input
                             type="text"
                             placeholder="Enter Name"
-                            className="bg-white w-full px-3 py-2 border-2 border-black rounded-lg shadow-[2px_2px_0px_rgba(0,0,0,1)]"
+                            className="bg-white w-full px-3 py-2 border-2 border-black rounded-lg shadow-[2px_2px_0px_rgba(0,0,0,1)] text-black"
                             onChange={(e) => handleForm(e, "name")}
                             value={form.name}
                         />
@@ -104,7 +104,7 @@ export default function ProductForm({ nameProp, handleSubmit, product }) {
                         <input
                             type="text"
                             placeholder="Enter Description"
-                            className="bg-white w-full px-3 py-2 border-2 border-black rounded-lg shadow-[2px_2px_0px_rgba(0,0,0,1)]"
+                            className="bg-white w-full px-3 py-2 border-2 border-black rounded-lg shadow-[2px_2px_0px_rgba(0,0,0,1)] text-black"
                             onChange={(e) => handleForm(e, "description")}
                             value={form.description}
                         />
@@ -116,7 +116,7 @@ export default function ProductForm({ nameProp, handleSubmit, product }) {
                         <input
                             type="number"
                             placeholder="Enter Price"
-                            className="bg-white w-full px-3 py-2 border-2 border-black rounded-lg shadow-[2px_2px_0px_rgba(0,0,0,1)]"
+                            className="bg-white w-full px-3 py-2 border-2 border-black rounded-lg shadow-[2px_2px_0px_rgba(0,0,0,1)] text-black"
                             onChange={(e) => handleForm(e, "price")}
                             value={form.price}
                         />
@@ -128,7 +128,7 @@ export default function ProductForm({ nameProp, handleSubmit, product }) {
                         <input
                             type="number"
                             placeholder="Enter Stock"
-                            className="bg-white g w-full px-3 py-2 border-2 border-black rounded-lg shadow-[2px_2px_0px_rgba(0,0,0,1)]"
+                            className="bg-white g w-full px-3 py-2 border-2 border-black rounded-lg shadow-[2px_2px_0px_rgba(0,0,0,1)] text-black"
                             onChange={(e) => handleForm(e, "stock")}
                             value={form.stock}
                         />
@@ -140,7 +140,7 @@ export default function ProductForm({ nameProp, handleSubmit, product }) {
                         <input
                             type="text"
                             placeholder="Enter Image URL"
-                            className="bg-white w-full px-3 py-2 border-2 border-black rounded-lg shadow-[2px_2px_0px_rgba(0,0,0,1)]"
+                            className="bg-white w-full px-3 py-2 border-2 border-black rounded-lg shadow-[2px_2px_0px_rgba(0,0,0,1)] text-black"
                             onChange={(e) => handleForm(e, "imageUrl")}
                             value={form.imageUrl}
                         />
@@ -150,7 +150,7 @@ export default function ProductForm({ nameProp, handleSubmit, product }) {
                             <span className="font-bold">Category</span>
                         </label>
                         <select
-                            className="bg-white w-full px-3 py-2 border-2 border-black rounded-lg shadow-[2px_2px_0px_rgba(0,0,0,1)]"
+                            className="bg-white w-full px-3 py-2 border-2 border-black rounded-lg shadow-[2px_2px_0px_rgba(0,0,0,1)] text-black"
                             name="category"
                             onChange={(e) => handleForm(e, "categoryId")}
                             value={form.categoryId}

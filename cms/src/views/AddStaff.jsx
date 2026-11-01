@@ -69,7 +69,7 @@ export default function AddStaffPage() {
   }
 
   const input =
-    "bg-white w-full px-3 py-2 border-2 border-black rounded-2xl shadow-[2px_2px_0px_rgba(0,0,0,1)]";
+    "bg-white w-full px-3 py-2 border-2 border-black rounded-2xl shadow-[2px_2px_0px_rgba(0,0,0,1)] text-black";
 
   return (
     <>
@@ -77,10 +77,10 @@ export default function AddStaffPage() {
         className="p-5 mt-5 border-2 border-black rounded-2xl shadow-[2px_2px_0px_rgba(0,0,0,1)] bg-blue-400"
         onSubmit={handleSubmit}
       >
-        <h1 className="text-2xl font-bold text-center mb-4">Add New Staff</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <h1 className="text-2xl font-bold text-center mb-4 text-black">Add New Staff</h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
           <div>
-            <label className="font-bold">Username (opsional)</label>
+            <label className="font-bold text-black">Username (opsional)</label>
             <input
               type="text"
               name="username"
@@ -90,7 +90,7 @@ export default function AddStaffPage() {
             />
           </div>
           <div>
-            <label className="font-bold">Email</label>
+            <label className="font-bold text-black">Email</label>
             <input
               type="text"
               name="email"
@@ -100,7 +100,7 @@ export default function AddStaffPage() {
             />
           </div>
           <div>
-            <label className="font-bold">Password</label>
+            <label className="font-bold text-black">Password</label>
             <input
               type="password"
               name="password"
@@ -110,7 +110,7 @@ export default function AddStaffPage() {
             />
           </div>
           <div>
-            <label className="font-bold">Phone Number</label>
+            <label className="font-bold text-black">Phone Number</label>
             <input
               type="text"
               name="phoneNumber"
@@ -120,7 +120,7 @@ export default function AddStaffPage() {
             />
           </div>
           <div className="md:col-span-2">
-            <label className="font-bold">Address</label>
+            <label className="font-bold text-black">Address</label>
             <input
               type="text"
               name="address"
