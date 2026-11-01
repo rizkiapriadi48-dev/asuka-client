@@ -85,7 +85,7 @@ export default function Home() {
         },
       );
       Toastify({
-        text: "Succeed Login",
+        text: "Success deleted",
         duration: 3000,
         newWindow: true,
         close: true,

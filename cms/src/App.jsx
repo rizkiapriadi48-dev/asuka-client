@@ -6,6 +6,7 @@ import AddProduct from "./views/AddProduct";
 import EditProduct from "./views/EditProduct";
 import Category from "./views/Category";
 import AddStaff from "./views/AddStaff";
+import UploadImage from "./views/UploadImage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/add" element={<AddProduct />} />
           <Route path="/edit/:id" element={<EditProduct />} />
+          <Route path="/upload/:id" element={<UploadImage />} />
           <Route path="/categories" element={<Category />} />
           <Route path="/add-staff" element={<AddStaff />} />
         </Route>
