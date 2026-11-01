@@ -7,5 +7,9 @@
 npm create vite@latest
 npm install tailwindcss @tailwindcss/vite
 npm i -D daisyui@latest
+npm i axios
+npm install --save toastify-js
+npm i react-router
+
 
 -ubah dulu vite config nya buat impor tailwind nya
